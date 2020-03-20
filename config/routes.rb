@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  #順番注意
+  root 'home#index'
+  devise_for :users, controller: { registrations: 'users/registrations' }
+  #devise_forはコントローラでの記述内容を有効化する
+  resources :users, only: [ :show, :index ]
+ 
+
 end
