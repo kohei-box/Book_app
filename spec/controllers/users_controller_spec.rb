@@ -8,12 +8,16 @@ RSpec.describe UsersController, type: :controller do
       @user = FactoryBot.create(:user)
     end
     
-    it "正常にレスポンスを返す。" do
-      sign_in @user
-      get :index
-      expect(response).to have_http_status(:success)
+    describe "#index" do
+      
+      it "正常にレスポンスを返す。" do
+        sign_in @user
+        get :index
+        expect(response).to have_http_status(:success)
+      end
     end
   end
+  
 
   describe "ログインしてない場合" do
     

@@ -1,3 +1,10 @@
-<h1>Welcome!!</h1>
-<p>ここはアプリのホームです。</p>
-<p>ここではアプリケーション紹介と、ログインを行います。</p>
+<% if user_signed_in? %>
+  <%= render 'shared/post_form' %>
+  
+    <%= render 'posts/post'%>
+
+<% else %>
+  <h1>Welcome!!</h1>
+  <p>ここはアプリのホームです。</p>
+  <p>ここではアプリケーション紹介と、ログインを行います。</p>
+<% end %>

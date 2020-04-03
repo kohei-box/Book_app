@@ -41,6 +41,8 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'omniauth-twitter'
 gem 'rails-i18n', '~> 5.1'
+gem 'carrierwave', '1.2.2'
+gem 'mini_magick', '4.7.0' 
 
 
 group :development, :test do
@@ -75,6 +77,7 @@ end
 group :production do
   #herokuがsqliteをサポートしてないのでPostgeresを本番環境
   gem 'pg', '1.2.2'
+  gem 'fog', '1.42'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
