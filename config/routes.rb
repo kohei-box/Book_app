@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   #devise_forはコントローラでの記述内容を有効化する
   resources :users, only: [:show, :index ]
   resources :posts, only: [:create, :destroy]
+  resources :books do
+    collection do
+      get :search
+    end
+  end
  
 
 end

@@ -1,0 +1,16 @@
+<div>
+  <h5>タイトル</h5>
+  <% @books.each do |book|%>
+  <div>
+    <ul>
+        <%= image_tag book.image if book.image? %>
+      <li>タイトル：<%= book.title %></li>
+      <li>著者：<%= book.author %></li>
+      <li>
+        ページ数: <%= book.page_count %>
+      </li>
+    </ul>
+  </div>
+  <% end %>
+  <%#= render partial: 'books/book_search', colletction: @books, as: :book %> 
+</div>

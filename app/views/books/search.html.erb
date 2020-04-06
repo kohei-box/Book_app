@@ -1,0 +1,17 @@
+<div>
+  <div>
+    <p>書籍検索</p>
+  </div>
+  <div>
+    <%= form_with url: search_books_path, scope: :q, local: true, method: :get do |f| %>
+    <div>
+      <%= f.text_field :keyword, value: @search_form.keyword, placeholder: 'キーワードを入力してください' %>
+      <%= f.submit '検索する' %>
+    </div>
+    <% end %>
+  </div>
+  <div>
+    <%= render 'books_search', books: @books %>
+  </div>
+  
+</div>
