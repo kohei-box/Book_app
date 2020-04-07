@@ -10,16 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_053540) do
+ActiveRecord::Schema.define(version: 2020_04_07_065449) do
 
   create_table "books", force: :cascade do |t|
     t.string "googlebooksapi_id", null: false
     t.string "title", null: false
     t.string "author"
     t.string "image"
-    t.text "description"
-    t.string "buy_link"
-    t.date "published_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "page_count"
