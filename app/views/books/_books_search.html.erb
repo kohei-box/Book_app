@@ -6,10 +6,12 @@
         <%= image_tag book.image if book.image? %>
       <li>タイトル：<%= book.title %></li>
       <li>著者：<%= book.author %></li>
-      <li>
-        ページ数: <%= book.page_count %>
-      </li>
+      <li>ページ数: <%= book.page_count %></li>
     </ul>
+    <%= form_with url: {controller: 'books', action: 'create'} do |f| %>
+      <%= f.hidden_field :googlebooksapi_id, value: book.googlebooksapi_id %>
+      <%= f.submit "書籍登録"%>
+    <% end %>
   </div>
   <% end %>
   <%#= render partial: 'books/book_search', colletction: @books, as: :book %> 
