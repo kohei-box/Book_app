@@ -3,8 +3,8 @@ class HomeController < ApplicationController
   
   def index
     if user_signed_in?
-      @post = current_user.posts.build
-      @posts = Post.where(user_id: current_user.id)
+      @review = current_user.reviews.build
+      @reviews = Review.where(user_id: current_user.id)
     end
   end
 end

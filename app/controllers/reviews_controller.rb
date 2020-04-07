@@ -1,8 +1,8 @@
-class PostsController < ApplicationController
+class ReviewsController < ApplicationController
   
   def create
-    @post = current_user.posts.build(post_params)
-    if @post.save
+    @review = current_user.reviews.build(review_params)
+    if @review.save
       flash[:success] = "投稿されました。"
       redirect_to root_url
     else
@@ -11,15 +11,15 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    @post.destroy
+    @review.destroy
     flash[:success] = "削除しました。"
     redirect_to request.referrer || users_path
   end
   
   private
   
-  def post_params
-    params.require(:post).permit(:content, :picture)
+  def review_params
+    params.require(:review).permit(:content, :picture)
   end
   
 end

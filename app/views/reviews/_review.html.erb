@@ -1,0 +1,15 @@
+<% @reviews.each do | review | %>
+<li id="post-<%= review.id %>">
+  <span><%= link_to review.user.name, review.user %></span>
+  <span>
+    <%= review.content %>
+    <%= image_tag review.picture.url if review.picture? %>
+  </span>
+  <span>
+    <%= time_ago_in_words(review.created_at) %>　前に作成
+    <% if review.user_id === current_user.id %>
+      <%= link_to "delete", review, method: :delete, data: { confirm: "本当に削除しますか？"} %>
+    <% end %>
+  </span>
+  </li>
+  <% end %>

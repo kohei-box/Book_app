@@ -1,4 +1,4 @@
-class Post < ApplicationRecord
+class Review < ApplicationRecord
   belongs_to :user
   
   mount_uploader :picture, PictureUploader
