@@ -1,0 +1,3 @@
+<%= form_with url: {controller: 'books', action: 'create'} bo, do |f| %>
+  <%= f.select :book_class, [['太郎', 1], ['二郎', 2]] %>
+<% end %>

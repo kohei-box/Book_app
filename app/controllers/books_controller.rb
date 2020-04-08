@@ -3,16 +3,16 @@ class BooksController < ApplicationController
   
   def index
     @books = current_user.books
+    # @books = Book.where(user_id: current_user.id).where(category: 1)
   end
   
   def new
     
-    
   end
   
   def create
-    google_book = GoogleBook.new_book(create_book_params[:googlebooksapi_id])
-    @book = google_book.book_registration(current_user, book_select)
+    @google_book = GoogleBook.create_book(create_book_params[:googlebooksapi_id])
+    @book = @google_book.book_registration(current_user, category_of_the_book[:category])
     if @book.save
       flash[:primary] = "本を登録しました"
       redirect_to books_path    
@@ -34,6 +34,10 @@ class BooksController < ApplicationController
   end
   
   private
+  
+    def category_of_the_book
+      params.require(:book).permit(:category)
+    end
   
     def create_book_params
       params.permit(:googlebooksapi_id)

@@ -7,7 +7,7 @@ class GoogleBook
   class << self
     include GoogleBooksApi
     
-    def new_book(googlebooksapi_id)
+    def create_book(googlebooksapi_id)
       url = url_from_id(googlebooksapi_id)
       item = get_json_from_url(url)
       google_book = GoogleBook.new(item)
@@ -49,13 +49,14 @@ class GoogleBook
     image.present? ? true : false
   end
   
-  def book_registration(user)
+  def book_registration(user,category)
     book = user.books.build(
       googlebooksapi_id: @googlebooksapi_id,
       title: @title,
       author: @author,
       image: @image,
-      page_count: @page_count
+      page_count: @page_count,
+      category: category
       )
     book
   end
