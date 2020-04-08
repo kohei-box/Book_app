@@ -1,17 +1,24 @@
 class BooksController < ApplicationController
   
+  
   def index
     @books = current_user.books
   end
   
+  def new
+    
+    
+  end
+  
   def create
     google_book = GoogleBook.new_book(create_book_params[:googlebooksapi_id])
-    @book = google_book.book_registration(current_user)
+    @book = google_book.book_registration(current_user, book_select)
     if @book.save
       flash[:primary] = "本を登録しました"
-      redirect_to books_path    else
-      flash.now[:danger] = "本の登録に失敗しました"
-      render search_books_path
+      redirect_to books_path    
+    else
+      flash.now[:danger] = "ログインしてください"
+      render new_user_session_path
     end
   end
   

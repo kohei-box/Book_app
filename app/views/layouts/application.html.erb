@@ -14,7 +14,9 @@
     <nav>
        <!--user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
       <% if user_signed_in? %> 
-        Logged in as <strong><%= current_user.email %></strong>.
+        <strong><%= current_user.email %></strong>でログイン中
+        <%= link_to "Home", root_path %> |
+        <%= link_to "Mypage", user_path(current_user.id) %> |
         <%= link_to 'プロフィール変更', edit_user_registration_path %> |
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       <% else %>
