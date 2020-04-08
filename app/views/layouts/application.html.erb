@@ -24,8 +24,13 @@
       <%= link_to '本を探す', search_books_path %>
     </nav>
   </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <notifications>
+      <%flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %>
+    </notifications>
     <%= yield %>
   </body>
 </html>

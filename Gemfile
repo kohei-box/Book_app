@@ -44,6 +44,8 @@ gem 'rails-i18n', '~> 5.1'
 gem 'carrierwave', '1.2.2'
 gem 'mini_magick', '4.7.0' 
 gem 'addressable'
+gem 'bootstrap', '~>4.1.1'
+gem 'jquery-rails'
 
 
 group :development, :test do

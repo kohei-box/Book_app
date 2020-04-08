@@ -8,9 +8,8 @@ class BooksController < ApplicationController
     google_book = GoogleBook.new_book(create_book_params[:googlebooksapi_id])
     @book = google_book.book_registration(current_user)
     if @book.save
-      flash[:success] = "本を登録しました"
-      redirect_to books_path
-    else
+      flash[:primary] = "本を登録しました"
+      redirect_to books_path    else
       flash.now[:danger] = "本の登録に失敗しました"
       render search_books_path
     end
@@ -18,7 +17,7 @@ class BooksController < ApplicationController
   
   def destroy
     Book.find(params[:id]).destroy
-    flash[:success] = "本棚から削除しました"
+    flash[:primary] = "本棚から削除しました"
     redirect_back( fallback_location: books_path )
   end
 
