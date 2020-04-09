@@ -50,8 +50,8 @@ class GoogleBook
   end
   
   def existing(user)
-    book = user.books.find_or_initialize_by( googlebooksapi_id: @googlebooksapi_id)
-    book
+    user.books.find_or_initialize_by( googlebooksapi_id: @googlebooksapi_id)
+    
   end
     
   def book_registration(user,category)
@@ -80,5 +80,4 @@ class GoogleBook
       @volume_info['authors']&.first
     end
         
-  
 end
