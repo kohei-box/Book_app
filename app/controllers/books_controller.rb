@@ -11,15 +11,19 @@ class BooksController < ApplicationController
   end
   
   def create
-    @google_book = GoogleBook.create_book(create_book_params[:googlebooksapi_id])
-    @book = @google_book.book_registration(current_user, category_of_the_book[:category])
-    if @book.save
-      flash[:primary] = "本を登録しました"
-      redirect_to books_path    
+    google_book = GoogleBook.create_book(create_book_params[:googlebooksapi_id])
+    existing_book =  google_book.existing(current_user)
+    if existing_book.persisted?
+     existing_book.update_attributes(category: category_params[:category])
+     flash[:primary] = "本を登録しました"
+     redirect_to books_path  
     else
-      flash.now[:danger] = "ログインしてください"
-      render new_user_session_path
+     @book = google_book.book_registration(current_user, category_params[:category])
+     @book.save
+     flash[:primary] = "本を登録しました"
+     redirect_to books_path  
     end
+    
   end
   
   def destroy
@@ -35,7 +39,7 @@ class BooksController < ApplicationController
   
   private
   
-    def category_of_the_book
+    def category_params
       params.require(:book).permit(:category)
     end
   

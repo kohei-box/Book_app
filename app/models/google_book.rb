@@ -49,8 +49,13 @@ class GoogleBook
     image.present? ? true : false
   end
   
+  def existing(user)
+    book = user.books.find_or_initialize_by( googlebooksapi_id: @googlebooksapi_id)
+    book
+  end
+    
   def book_registration(user,category)
-    book = user.books.build(
+    book = user.books.build( 
       googlebooksapi_id: @googlebooksapi_id,
       title: @title,
       author: @author,
