@@ -51,7 +51,6 @@ class GoogleBook
   
   def existing(user)
     user.books.find_or_initialize_by( googlebooksapi_id: @googlebooksapi_id)
-    
   end
     
   def book_registration(user,category)

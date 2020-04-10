@@ -1,6 +1,6 @@
 <div>
   <h5>タイトル</h5>
-  <% @books.each do |book|%>
+  <% @books.each_with_index do |book, index|%>
   <div>
     <ul>
         <%= image_tag book.image if book.image? %>
@@ -8,27 +8,26 @@
       <li>著者：<%= book.author %></li>
       <li>ページ数: <%= book.page_count %></li>
     </ul>
-    <ul>
-      <li >
-           <%= link_to '読んだ本', books_path(googlebooksapi_id: book.googlebooksapi_id, book: {category: 1}),
-               method: :post, class: "#{"text-warning" if book.existing(current_user).category == 1 }" %>
-      </li>
-      <li>
-        <%= link_to '読んでいる本', books_path(googlebooksapi_id: book.googlebooksapi_id, book: {category: 2}),
-            method: :post, class: "#{"text-warning" if book.existing(current_user).category == 2 }" %>
-      </li>
-      <li>
-        <%= link_to '読みたい本', books_path(googlebooksapi_id: book.googlebooksapi_id, book: {category: 3}),
-            method: :post, class: "#{"text-warning" if book.existing(current_user).category == 3 }"  %>
-      </li>
-    </ul>
-    
-    
-    <div>
-      <%= form_with url: {controller: 'books', action: 'create'} do |f| %>
-      <%= f.hidden_field :googlebooksapi_id, value: book.googlebooksapi_id %>
-      <%= f.submit "書籍登録"%>
-    <% end %>
+    <button id="modal-open-button<%= index %>">書籍登録</button>
+    <div class="overlay"></div>
+    <div id="modal-<%= index %>" class="modal-window">
+      <div class="modal-content">
+        <ul>
+          <li>
+            <%= link_to '読んだ本', books_path(googlebooksapi_id: book.googlebooksapi_id, book: {category: 1}),
+                method: :post, class: "#{"text-warning" if book.existing(current_user).category == 1 }" %>
+          </li>
+          <li>
+            <%= link_to '読んでいる本', books_path(googlebooksapi_id: book.googlebooksapi_id, book: {category: 2}),
+                method: :post, class: "#{"text-warning" if book.existing(current_user).category == 2 }" %>
+          </li>
+          <li>
+            <%= link_to '読みたい本', books_path(googlebooksapi_id: book.googlebooksapi_id, book: {category: 3}),
+                method: :post, class: "#{"text-warning" if book.existing(current_user).category == 3 }"  %>
+          </li>
+        </ul>
+      </div>
+      <button id="modal-close-button<%= index %>">閉じる</button>
     </div>
   </div>
   <% end %>

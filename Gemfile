@@ -46,6 +46,7 @@ gem 'mini_magick', '4.7.0'
 gem 'addressable'
 gem 'bootstrap', '~>4.1.1'
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 
 
 group :development, :test do
