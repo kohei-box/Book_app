@@ -12,18 +12,18 @@ class BooksController < ApplicationController
   
   def create
     google_book = GoogleBook.create_book(create_book_params[:googlebooksapi_id])
-    existing_book =  google_book.existing(current_user)
+    existing_book =  google_book.existing_or_new(current_user)
     if existing_book.persisted?
      existing_book.update_attributes(category: category_params[:category])
-     flash[:primary] = "本を登録しました"
-     redirect_to books_path  
     else
      @book = google_book.book_registration(current_user, category_params[:category])
      @book.save
-     flash[:primary] = "本を登録しました"
-     redirect_to books_path  
     end
-    
+    flash[:primary] = "本を登録しました"
+    (existing_book.category || @book.category) == 1 ? (redirect_to user_path(current_user)) : (redirect_to books_path(current_user))
+  end
+  
+  def update
   end
   
   def destroy

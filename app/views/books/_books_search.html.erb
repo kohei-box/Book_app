@@ -15,15 +15,15 @@
         <ul>
           <li>
             <%= link_to '読んだ本', books_path(googlebooksapi_id: book.googlebooksapi_id, book: {category: 1}),
-                method: :post, class: "#{"text-warning" if book.existing(current_user).category == 1 }" %>
+                method: :post, class: "#{"text-warning" if book.existing_or_new(current_user).category == 1 }" %>
           </li>
           <li>
             <%= link_to '読んでいる本', books_path(googlebooksapi_id: book.googlebooksapi_id, book: {category: 2}),
-                method: :post, class: "#{"text-warning" if book.existing(current_user).category == 2 }" %>
+                method: :post, class: "#{"text-warning" if book.existing_or_new(current_user).category == 2 }" %>
           </li>
           <li>
             <%= link_to '読みたい本', books_path(googlebooksapi_id: book.googlebooksapi_id, book: {category: 3}),
-                method: :post, class: "#{"text-warning" if book.existing(current_user).category == 3 }"  %>
+                method: :post, class: "#{"text-warning" if book.existing_or_new(current_user).category == 3 }"  %>
           </li>
         </ul>
       </div>

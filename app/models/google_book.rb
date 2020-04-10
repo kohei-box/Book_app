@@ -49,7 +49,7 @@ class GoogleBook
     image.present? ? true : false
   end
   
-  def existing(user)
+  def existing_or_new(user)
     user.books.find_or_initialize_by( googlebooksapi_id: @googlebooksapi_id)
   end
     
