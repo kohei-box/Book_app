@@ -5,10 +5,7 @@ class BooksController < ApplicationController
     @books = current_user.books
     # @books = Book.where(user_id: current_user.id).where(category: 1)
   end
-  
-  def new
-    
-  end
+
   
   def create
     google_book = GoogleBook.create_book(create_book_params[:googlebooksapi_id])
@@ -23,8 +20,6 @@ class BooksController < ApplicationController
     (existing_book.category || @book.category) == 1 ? (redirect_to user_path(current_user)) : (redirect_to books_path(current_user))
   end
   
-  def update
-  end
   
   def destroy
     Book.find(params[:id]).destroy
