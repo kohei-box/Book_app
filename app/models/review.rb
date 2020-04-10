@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
   belongs_to :user
+  belongs_to :book
   
   mount_uploader :picture, PictureUploader
   validates :user_id, presence:true
