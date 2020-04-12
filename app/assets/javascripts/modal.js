@@ -30,5 +30,25 @@ $(function() {
   });
       i++; 
   };
+  
+  var i = 0;
+  while(i < 50){
+    const index = i;
+  $('#modal-close-button' + index ).on('click', function(){
+    $('#overlay, #modal-' + index).fadeOut();
+
+  });
+      i++; 
+  };
+  
+  var i = 0;
+  while(i < 50){
+    const index = i;
+  $('#modal-close-button' + index ).on('click', function(){
+    $('#overlay, #modal-' + index).fadeOut();
+
+  });
+      i++; 
+  };
 });
 

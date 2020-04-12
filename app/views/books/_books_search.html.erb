@@ -8,13 +8,14 @@
       <li>著者：<%= book.author %></li>
       <li>ページ数: <%= book.page_count %></li>
     </ul>
-    <button id="modal-open-button<%= index %>">書籍登録</button>
-    <div class="overlay"></div>
+    <button id="modal-open-button-<%= index %>">書籍登録</button>
+    <div id="overlay" class="overlay"></div>
     <div id="modal-<%= index %>" class="modal-window">
       <div class="modal-content">
         <ul>
           <li>
-            <%= link_to '読んだ本', books_path(googlebooksapi_id: book.googlebooksapi_id, book: {category: 1}),
+            <button id="modal-open-button2-<%= index %>">読んだ本</button>
+            <%#= link_to '読んだ本', books_path(googlebooksapi_id: book.googlebooksapi_id, book: {category: 1}),
                 method: :post, class: "#{"text-warning" if book.existing_or_new(current_user).category == 1 }" %>
           </li>
           <li>
@@ -27,9 +28,44 @@
           </li>
         </ul>
       </div>
-      <button id="modal-close-button<%= index %>">閉じる</button>
+      <button id="modal-close-button-<%= index %>">閉じる</button>
     </div>
   </div>
+  <div id="modal2-<%= index %>" class="modal-window">
+              <%= form_with scope: :book, url: '/books' do |f| %>
+               <div class="modal-content">
+                <%= f.hidden_field :googlebooksapi_id, value: book.googlebooksapi_id %>
+                <%= f.hidden_field :category, value:1 %>
+                <%= f.fields_for :reviews do |r|%>
+                  <div id="star">
+                    <%= r.label :rate, '評価', class: ''%>
+                    <%= r.hidden_field :rate, id: :review_star %>
+                  </div>
+                  <div>
+                    <%= r.label :word_count, '単語数', class: ''%>
+                    <%= r.text_field :word_count%>
+                  </div>
+                  <div>
+                    <%= r.label :content, '感想', class:''%>
+                    <%= r.text_area :content, placeholder: "投稿する..." %>
+                  </div>
+                <% end %>
+                <%= f.submit '登録する', class: 'btn btn-primary'%>
+                </div>
+              <% end %>
+              <button id="modal-close-button2-<%= index%>">閉じる</button>
+            </div>
   <% end %>
   <%#= render partial: 'books/book_search', colletction: @books, as: :book %> 
 </div>
+
+<script>
+  $('#star').raty({
+    size: 36,
+    starOff: '<%= asset_path('star-off.png') %>',
+    starOn: '<%= asset_path('star-on.png') %>',
+    starHalf: '<%=  asset_path('star-half.png') %>',
+    scoreName: 'review[rate]',
+    half: true,
+  });
+</script>
