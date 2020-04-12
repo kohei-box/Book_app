@@ -1,13 +1,13 @@
 // Place all the styles related to the books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#overlay {
+.overlay {
 width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.05);
   display: none;
   z-index: 1;
   overflow: hidden;
