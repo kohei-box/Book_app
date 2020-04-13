@@ -1,23 +1,29 @@
 class BooksController < ApplicationController
-  
+  attr_reader :googlebooksapi_id, :category
   
   def index
     @books = current_user.books
     # @books = Book.where(user_id: current_user.id).where(category: 1)
   end
-
+  
+  def new
+    @book = Rook.new
+    @book.reviews.build
+  end
   
   def create
-    google_book = GoogleBook.create_book(create_book_params[:googlebooksapi_id])
+    google_book = GoogleBook.create_book(book_params[:googlebooksapi_id])
     existing_book =  google_book.existing_or_new(current_user)
     if existing_book.persisted?
-     existing_book.update_attributes(category: category_params[:category])
+      existing_book.update_attributes(category: book_params[:category])
+      @book = existing_book
     else
-     @book = google_book.book_registration(current_user, category_params[:category])
-     @book.save
+      @book = google_book.book_registration(current_user, book_params[:category])
+      @book.save
     end
+    create_review(book_params[:reviews].merge(user_id: current_user.id, book_id: @book.id))
     flash[:primary] = "本を登録しました"
-    (existing_book.category || @book.category) == 1 ? (redirect_to user_path(current_user)) : (redirect_to books_path(current_user))
+    @book.category == 1 ? (redirect_to user_path(current_user)) : (redirect_to books_path(current_user))
   end
   
   
@@ -34,12 +40,9 @@ class BooksController < ApplicationController
   
   private
   
-    def category_params
-      params.require(:book).permit(:category)
-    end
-  
-    def create_book_params
-      params.permit(:googlebooksapi_id)
+    def book_params
+      params.require(:book).permit(:googlebooksapi_id,:category,
+                                  reviews: [ :content, :word_count, :rate])
     end
     
     def search_books_params
@@ -47,4 +50,13 @@ class BooksController < ApplicationController
       # form_withのscopeで:qをパラメータとしてグループ化できる
     end
   
+    def  create_review(book_params)
+      if @book.category == 1
+        @review = @book.reviews.build(book_params) 
+          unless @review.save!
+            flash[:danger] = "レビューの作成に失敗しました。"
+            redirect_to books_path
+          end
+      end
+    end
 end
