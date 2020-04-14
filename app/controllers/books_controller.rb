@@ -9,7 +9,7 @@ class BooksController < ApplicationController
   def show
     @google_book = GoogleBook.create_book(params[:googlebooksapi_id])
     @books = Book.where(googlebooksapi_id: params[:googlebooksapi_id])
-    @reviews = Review.find_by(book_id: params[:googlebooksapi_id])
+    @reviews = Review.where(book_id: params[:googlebooksapi_id]).paginate(page: params[:page])
   end
   
   def new
