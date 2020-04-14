@@ -6,11 +6,14 @@
 <p><%= @google_book.publisher %></p>
 <p><%= @google_book.page_count %></p>
 <p><%= @google_book.buy_link %></p>
-<% @books.each do |book| %>
-  <%= book.user.name %>
-  
+<% if @reviews.any? > 1 %>
+  <% @reviews&.each do |review| %>
+    <%= review.user.name%>
+    <%= review.content %>
+  <% end %>
+<% else %>
+ <p>まだレヴューがありません。</p>
 <% end %>
-
 
 
 
