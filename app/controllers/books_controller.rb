@@ -6,8 +6,14 @@ class BooksController < ApplicationController
     # @books = Book.where(user_id: current_user.id).where(category: 1)
   end
   
+  def show
+    @google_book = GoogleBook.create_book(params[:googlebooksapi_id])
+    @books = Book.where(googlebooksapi_id: params[:googlebooksapi_id])
+    @reviews = @books.reviews
+  end
+  
   def new
-    @book = Rook.new
+    @book = Book.new
     @book.reviews.build
   end
   
@@ -19,7 +25,7 @@ class BooksController < ApplicationController
       @book = existing_book
     else
       @book = google_book.book_registration(current_user, book_params[:category])
-      @book.save
+      @book.save!
     end
     create_review(book_params[:reviews].merge(user_id: current_user.id, book_id: @book.id))
     flash[:primary] = "本を登録しました"
@@ -47,7 +53,6 @@ class BooksController < ApplicationController
     
     def search_books_params
       params.fetch(:q, keyword: '').permit(:keyword)
-      # form_withのscopeで:qをパラメータとしてグループ化できる
     end
   
     def  create_review(book_params)
