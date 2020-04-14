@@ -45,9 +45,6 @@ class GoogleBook
     @page_count = @volume_info['pageCount']
   end
   
-  def image?
-    image.present? ? true : false
-  end
   
   def existing_or_new(user)
     user.books.find_or_initialize_by( googlebooksapi_id: @googlebooksapi_id)

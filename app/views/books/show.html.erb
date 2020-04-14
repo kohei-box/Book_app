@@ -1,11 +1,11 @@
-<p><%= image_tag @google_book.image if @google_book.image? %></p>
+<p><%= image_tag @google_book.image if @google_book.present? %></p>
 <p><%= @google_book.title %></p>
 <p><%= @google_book.author %></p>
 <p><%= @google_book.description %></p>
 <p><%= @google_book.published_at %></p>
 <p><%= @google_book.publisher %></p>
 <p><%= @google_book.page_count %></p>
-<p><%= @google_book.buy_link %></p>
+<p><%= link_to '購入する' ,@google_book.buy_link unless @google_book.buy_link.nil? %></p>
 
 
   <% @reviews.each do |review| %>
