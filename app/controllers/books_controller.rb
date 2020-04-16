@@ -2,7 +2,9 @@ class BooksController < ApplicationController
   attr_reader :googlebooksapi_id, :category
   
   def index
-    @books = current_user.books
+    puts "ok"
+    puts params[:user_id].nil?
+    @books = Book.where(user_id: params[:user_id])
     # @books = Book.where(user_id: current_user.id).where(category: 1)
   end
   
@@ -27,7 +29,7 @@ class BooksController < ApplicationController
       @book = google_book.book_registration(current_user, book_params[:category])
       @book.save!
     end
-    create_review(book_params[:reviews].merge(user_id: current_user.id, book_id: @book.id))
+    create_review(book_params[:reviews])
     flash[:primary] = "本を登録しました"
     @book.category == 1 ? (redirect_to user_path(current_user)) : (redirect_to books_path(current_user))
   end
@@ -57,7 +59,7 @@ class BooksController < ApplicationController
   
     def  create_review(book_params)
       if @book.category == 1
-        @review = @book.reviews.build(book_params) 
+        @review = @book.reviews.build(book_params.merge(user_id: current_user.id, book_id: @book.id))
           unless @review.save!
             flash[:danger] = "レビューの作成に失敗しました。"
             redirect_to books_path
