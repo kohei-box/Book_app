@@ -1,0 +1,9 @@
+
+<% unless @users.nil? %>
+<div class="user_avatars">
+  <% @users.each do |user| %>
+    <%= user.name %>
+  <% end %>
+  <%= will_paginate %>
+</div>
+<% end %>

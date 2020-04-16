@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'home#index'
   devise_for :users, controller: { registrations: 'users/registrations' }
   #devise_forはコントローラでの記述内容を有効化する
-  resources :users, only: [:show, :index ] do
+  resources :users do
     member do
       get :following, :followers
     end
