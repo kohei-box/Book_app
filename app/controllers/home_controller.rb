@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   
   def index
     if user_signed_in?
-      @reviews = Review.where(user_id: current_user.id)
+      @feed_items = current_user.feed.paginate(page: params[:page])
     end
   end
 end

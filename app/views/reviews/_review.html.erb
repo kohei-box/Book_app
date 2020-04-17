@@ -1,5 +1,5 @@
-<% @reviews.each do | review | %>
-<li id="post-<%= review.id %>">
+
+<ol id="post-<%= review.id %>">
   <span><%= link_to review.user.name, review.user %></span>
   <span>
     <%= review.content %>
@@ -11,5 +11,4 @@
       <%= link_to "delete", review, method: :delete, data: { confirm: "本当に削除しますか？"} %>
     <% end %>
   </span>
-  </li>
-  <% end %>
+  </ol>

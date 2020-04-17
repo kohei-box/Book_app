@@ -1,7 +1,13 @@
 <% if user_signed_in? %>
-  <%= render 'shared/review_form' %>
-  
-    <%= render 'reviews/review'%>
+<div>
+  <section class="user_info"></section>
+  <section class=""></section>
+  <section></section>
+  <div>
+    <h3>Timeline</h3>
+    <%= render 'shared/feed' %>
+  </div>
+</div>
 
 <% else %>
   <h1>Welcome!!</h1>

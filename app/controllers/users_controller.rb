@@ -1,15 +1,13 @@
 class UsersController < ApplicationController
   
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
   
   def show
     @user = User.find(params[:id])
     @book_pages = Book.where(user_id: current_user.id).where(category: 1).sum(:page_count)
     @book_words = Review.where(user_id: current_user.id).sum(:word_count)
-    
-
   end
   
   def following
@@ -23,5 +21,11 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
+  
+  private
+  
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
   
 end
