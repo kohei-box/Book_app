@@ -1,13 +1,13 @@
 class ReviewsController < ApplicationController
   
   def create
-    @review = current_user.reviews.build(review_params)
-    if @review.save
-      flash[:success] = "投稿されました。"
-      redirect_to root_url
-    else
-      render root_url
-    end
+    # @review = current_user.reviews.build(review_params)
+    # if @review.save
+    #   flash[:success] = "投稿されました。"
+    #   redirect_to root_url
+    # else
+    #   render root_url
+    # end
   end
   
   def destroy

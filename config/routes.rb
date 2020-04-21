@@ -16,6 +16,6 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships, only:[ :create, :destroy]
- 
+  resources :book_registrations, only:[ :create, :destroy]
 
 end

@@ -2,7 +2,6 @@ class BooksController < ApplicationController
   attr_reader :googlebooksapi_id, :category
   
   def index
-    puts "ok"
     puts params[:user_id].nil?
     @books = Book.where(user_id: params[:user_id])
     # @books = Book.where(user_id: current_user.id).where(category: 1)
@@ -21,8 +20,8 @@ class BooksController < ApplicationController
   
   def create
     google_book = GoogleBook.create_book(book_params[:googlebooksapi_id])
-    existing_book =  google_book.existing_or_new(current_user)
-    if existing_book.persisted?
+    book =  google_book.existing_or_new(current_user)
+    if book.persisted? || book.save
       existing_book.update_attributes(category: book_params[:category])
       @book = existing_book
     else
