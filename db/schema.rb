@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2020_04_21_041309) do
 
   create_table "book_registrations", force: :cascade do |t|
-    t.integer "category"
+    t.string "category"
     t.integer "user_id"
     t.integer "book_id"
     t.datetime "created_at", null: false

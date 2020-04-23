@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
+    member do
+      get :read, :reading, :wish
+    end
   end
   resources :relationships, only:[ :create, :destroy]
   resources :book_registrations, only:[ :create, :destroy]

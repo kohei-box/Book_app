@@ -7,11 +7,10 @@
       <li><%= book.title %></li>
       <li><%= book.author %></li>
       <li><%= book.page_count %></li>
-      <li><%= book.category %></li>
     </ul>
-    <% if book.user_id === current_user.id %>
-      <%= button_to "本棚から削除", book, method: :delete, data: { confirm: "本当に削除しますか？"} %>
-    <% end %>
+    <%# if book.user_id === current_user.id %>
+      <%#= button_to "本棚から削除", book, method: :delete, data: { confirm: "本当に削除しますか？"} %>
+    <%# end %>
   </div>
   <% end %>
 </div>

@@ -17,12 +17,12 @@
             <button id="modal-open-button2-<%= index %>">読んだ本</button>
           </li>
           <li>
-            <%= link_to '読んでいる本', books_path( book: { googlebooksapi_id: book.googlebooksapi_id, category: 2}),
+            <%= link_to '読んでいる本', books_path( book: { googlebooksapi_id: book.googlebooksapi_id, category: "読んでいる本"}),
                 method: :post %>
                 <!--class: "#{"text-warning" if book.existing_or_new(current_user).category == 2 }-->
           </li>
           <li>
-            <%= link_to '読みたい本', books_path( book: { googlebooksapi_id: book.googlebooksapi_id, category: 3}),
+            <%= link_to '読みたい本', books_path( book: { googlebooksapi_id: book.googlebooksapi_id, category: "読みたい本"}),
                 method: :post %>
           </li>
         </ul>
@@ -34,7 +34,7 @@
     <%= form_with scope: :book, url: '/books' do |f| %>
      <div class="modal-content">
       <%= f.hidden_field :googlebooksapi_id, value: book.googlebooksapi_id %>
-      <%= f.hidden_field :category, value:1 %>
+      <%= f.hidden_field :category, value: "読んだ本" %>
       <%= f.fields_for :reviews do |r|%>
         <div id="star-<%= index %>">
           <%= r.label :rate, '評価', class: ''%>

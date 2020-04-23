@@ -7,4 +7,8 @@ class Book < ApplicationRecord
   validates :googlebooksapi_id, presence: true
   validates :title, presence: true
   
+  
+  def deregistration(book)
+    registrations.find_by(book_id: book.id).destroy
+  end
 end
