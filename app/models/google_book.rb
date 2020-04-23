@@ -46,21 +46,19 @@ class GoogleBook
   end
   
   
-  def existing_or_new(user)
-    user.books.find_or_initialize_by( googlebooksapi_id: @googlebooksapi_id)
-  end
-    
-  def book_registration(user,category)
-    book = user.books.build( 
+  def existing_or_new
+    Book.find_or_initialize_by( 
       googlebooksapi_id: @googlebooksapi_id,
       title: @title,
       author: @author,
       image: @image,
       page_count: @page_count,
-      category: category
       )
-    book
   end
+  # def existing_or_new(user)
+  #   user.books.find_or_initialize_by( googlebooksapi_id: @googlebooksapi_id)
+  # end
+
     
   private
     

@@ -18,11 +18,12 @@
           </li>
           <li>
             <%= link_to '読んでいる本', books_path( book: { googlebooksapi_id: book.googlebooksapi_id, category: 2}),
-                method: :post, class: "#{"text-warning" if book.existing_or_new(current_user).category == 2 }" %>
+                method: :post %>
+                <!--class: "#{"text-warning" if book.existing_or_new(current_user).category == 2 }-->
           </li>
           <li>
             <%= link_to '読みたい本', books_path( book: { googlebooksapi_id: book.googlebooksapi_id, category: 3}),
-                method: :post, class: "#{"text-warning" if book.existing_or_new(current_user).category == 3 }"  %>
+                method: :post %>
           </li>
         </ul>
       </div>

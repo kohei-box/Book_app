@@ -2,8 +2,7 @@ class BooksController < ApplicationController
   attr_reader :googlebooksapi_id, :category
   
   def index
-    puts params[:user_id].nil?
-    @books = Book.where(user_id: params[:user_id])
+    @books = current_user.books
     # @books = Book.where(user_id: current_user.id).where(category: 1)
   end
   
@@ -19,26 +18,37 @@ class BooksController < ApplicationController
   end
   
   def create
+    
     google_book = GoogleBook.create_book(book_params[:googlebooksapi_id])
-    book =  google_book.existing_or_new(current_user)
-    if book.persisted? || book.save
-      existing_book.update_attributes(category: book_params[:category])
-      @book = existing_book
+    @book =  google_book.existing_or_new
+    if @book.persisted? || @book.save!
+      book_registration = BookRegistration.find_or_initialize_by(user_id: current_user.id, book_id: @book.id )
+      if book_registration.update_attributes(category: book_params[:category])
+        if book_registration.category == 1 
+          Review.build(book_params.merge(user_id: current_user.id, book_id: @book.id))
+          unless @review.save
+            flash[:danger] = "レビューの作成に失敗しました。"
+            redirect_to books_path
+          end
+        end
+        flash[:primary] = "本を登録しました"
+        redirect_to books_path
+      else
+        flash[:danger] = "書籍登録に失敗しました。"
+        redirect_back(fallback_location: root_path)
+      end
     else
-      @book = google_book.book_registration(current_user, book_params[:category])
-      @book.save!
+      flash[:danger] = "書籍登録に失敗しました。"
+      redirect_back(fallback_location: root_path)
     end
-    create_review(book_params[:reviews])
-    flash[:primary] = "本を登録しました"
-    @book.category == 1 ? (redirect_to user_path(current_user)) : (redirect_to books_path(current_user))
   end
   
   
-  def destroy
-    Book.find(params[:id]).destroy
-    flash[:primary] = "本棚から削除しました"
-    redirect_back( fallback_location: books_path )
-  end
+  # def destroy
+  #   Book.find(params[:id]).destroy
+  #   flash[:primary] = "本棚から削除しました"
+  #   redirect_back( fallback_location: books_path )
+  # end
 
   def search
     @search_form = SearchBooksForm.new(search_books_params)
