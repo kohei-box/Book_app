@@ -1,0 +1,2 @@
+module BookRegistrationHelper
+end

@@ -3,4 +3,5 @@ class BookRegistration < ApplicationRecord
   belongs_to :book
   
   # validates :category, presence: true
+  
 end

@@ -8,7 +8,5 @@ class Book < ApplicationRecord
   validates :title, presence: true
   
   
-  def deregistration(book)
-    registrations.find_by(book_id: book.id).destroy
-  end
+ 
 end

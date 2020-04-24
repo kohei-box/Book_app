@@ -35,25 +35,6 @@ class BooksController < ApplicationController
     @books = GoogleBook.search(@search_form.keyword)
   end
   
-  def read
-    book_registrations = BookRegistration.where(category: "読んだ本")
-    user = User.find(params[:id])
-    @read_book = @user.book_registrations
-    # user.books.book_registration.where(category: "読んだ本")
-    # @user_read_books = 
-  end
-  
-  def reading
-    @user = User.find(params[:id])
-    @user_books = @user.book_registrations.where(category: "読んでいる本")
-  end
-  
-  def wish
-    @user = User.find(params[:id])
-    @user_books = @user.books.registrations.where(category: "読たい本")
-  end
-  
-  
   private
   
     def book_params
@@ -68,13 +49,12 @@ class BooksController < ApplicationController
     def create_review(book_params)
       if @book_registration.category == "読んだ本"
         @review = @book.reviews.build(book_params[:reviews].merge(user_id: current_user.id))
-        if @review.save
-          flash[:primary] = "書籍を登録しました"
-          redirect_to books_path
-        else
+        unless @review.save
           flash[:danger] = "書籍登録に成功し、レビューの作成に失敗しました"
-          redirect_to books_path
+          redirect_to user_path(current_user)
         end
       end
+      flash[:primary] = "書籍を登録しました"
+      redirect_to user_path(current_user)
     end
 end

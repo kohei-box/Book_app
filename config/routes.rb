@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   #devise_forはコントローラでの記述内容を有効化する
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :read, :reading, :wish
     end
   end
   
@@ -14,11 +14,8 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
-    member do
-      get :read, :reading, :wish
-    end
   end
-  resources :relationships, only:[ :create, :destroy]
-  resources :book_registrations, only:[ :create, :destroy]
+  resources :relationships, only:[:create, :destroy]
+  resources :book_registration, only:[:destroy]
 
 end

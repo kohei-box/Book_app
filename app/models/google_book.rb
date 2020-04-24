@@ -47,18 +47,13 @@ class GoogleBook
   
   
   def existing_or_new
-    Book.find_or_initialize_by( 
-      googlebooksapi_id: @googlebooksapi_id,
-      title: @title,
-      author: @author,
-      image: @image,
-      page_count: @page_count,
-      )
+      Book.find_by(googlebooksapi_id: @googlebooksapi_id) || 
+      Book.new(googlebooksapi_id: @googlebooksapi_id,
+               title: @title,
+               author: @author,
+               image: @image,
+               page_count: @page_count)
   end
-  # def existing_or_new(user)
-  #   user.books.find_or_initialize_by( googlebooksapi_id: @googlebooksapi_id)
-  # end
-
     
   private
     

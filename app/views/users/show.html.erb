@@ -1,7 +1,9 @@
 <h1>User<%= @user.id%>のマイページ</h1>
 <p>名前：<%= @user.name %></p>
 <p>メールアドレス：<%= @user.email %></p>
-<%= link_to '本棚', books_path( user_id: @user.id) %>
+<%= link_to '読んだ本', read_user_path %>
+<%= link_to '読んでいる本', reading_user_path %>
+<%= link_to '読みたい本', wish_user_path %>
 <p>ページ数：<%= @book_pages %>ページ</p>
 <p>ワード数：<%= @book_words %>ワード</p>
 <section class="stats">
