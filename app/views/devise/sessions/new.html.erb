@@ -2,39 +2,39 @@
   <header>
     <div id="header-logo">Read App</div>
   </header>
-  <div id="login-area">
+  <div class="login-area">
     <h3>Sign in to App</h2>
-  
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%#= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email-address" %>
-    </div>
-  
-    <div class="field">
-      <%#= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password", placeholder: "password" %>
-    </div>
-  
-    <% if devise_mapping.rememberable? %>
+    
+    <div class="login-area-input">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
-        <%#= f.check_box :remember_me %>
-        <%#= f.label :remember_me %>
+        <%#= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email-address" %>
       </div>
-    <% end %>
-    <div id="sign-buttons">
-      <div class="actions login-button">
-        <%= f.submit "Sign in"%>
+    
+      <div class="field">
+        <%#= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "password" %>
       </div>
-      
-      <div class="signup-button">
-        <%= link_to("Sign up", new_user_registration_path) %>
+    
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%#= f.check_box :remember_me %>
+          <%#= f.label :remember_me %>
+        </div>
+      <% end %>
+      <div class="sign-buttons">
+        <div class="actions login-button">
+          <%= f.submit "Sign in", class: "login-link"%>
+        </div>
+        
+        <div class="signup-button">
+          <%= link_to("Sign up", new_user_registration_path, class: "signup-link") %>
+        </div>
       </div>
+      <% end %>
     </div>
     
-    
-  <% end %>
-  
   </div>
   
 </main>

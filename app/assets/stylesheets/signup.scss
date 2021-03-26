@@ -1,0 +1,50 @@
+#signup-bg {
+    position: relative;
+    background-image: image-url('janko-ferlic-sfL_QOnmy00-unsplash.jpg');
+    height: 800px;
+    background-size: cover;
+}
+.signup-area{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    background-color: rgba(59,59,62,0.80);
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+    max-width: 450px;
+    max-height: 700px;
+    border-radius: 30px;
+    padding: 30px 0 30px 0;
+    margin: auto;
+    .signup-area-info {
+        h3{
+            color: white;
+            font-size: 35px;
+        }
+        p {
+            margin-bottom: 20px;
+            color: white;
+        }
+    }
+    .signup-area-input{
+        margin: 20px 0 20px 0;
+        input{
+            width: 250px;
+            height: 33px;
+            border-radius: 30px;
+            margin-top: 5px;
+        }
+        label {
+            text-align: left;
+            color: white;
+            margin-top: 15px;
+        }
+        em{
+            color: white;
+        }
+    }
+}
