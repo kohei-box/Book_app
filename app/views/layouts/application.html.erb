@@ -10,22 +10,22 @@
   </head>
 
   <body>
-    <!--<header>-->
-    <!--  <nav>-->
-         <!--user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
-    <!--    <% if user_signed_in? %> -->
-    <!--      <strong><%= current_user.email %></strong>でログイン中-->
-    <!--      <%= link_to "Home", root_path %> |-->
-    <!--      <%= link_to "Mypage", user_path(current_user.id) %> |-->
-    <!--      <%= link_to 'プロフィール変更', edit_user_registration_path %> |-->
-    <!--      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>-->
-    <!--    <% else %>-->
-    <!--      <%= link_to "サインイン", new_user_registration_path %> |-->
-    <!--      <%= link_to "ログイン", new_user_session_path %>-->
-    <!--    <% end %>-->
-    <!--    <%= link_to '本を探す', search_books_path %>-->
-    <!--  </nav>-->
-    <!--</header>-->
+    <header>
+      <nav>
+         user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド 
+        <% if user_signed_in? %> 
+          <strong><%= current_user.email %></strong>でログイン中
+          <%= link_to "Home", root_path %> |
+          <%= link_to "Mypage", user_path(current_user.id) %> |
+          <%= link_to 'プロフィール変更', edit_user_registration_path %> |
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "サインイン", new_user_registration_path %> |
+          <%= link_to "ログイン", new_user_session_path %>
+        <% end %>
+        <%= link_to '本を探す', search_books_path %>
+      </nav>
+    </header>
     <notifications>
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>">
