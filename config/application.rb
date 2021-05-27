@@ -16,6 +16,10 @@ module ThanksApp
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    
+    #追記
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
   
   config.generators do |g|
   

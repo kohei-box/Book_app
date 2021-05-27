@@ -40,8 +40,10 @@ users = User.order(:created_at).take(6)
                                   content: content,
                                   rate: 4,
                                   user_id: user.id,
-                                  book_id: "ooDXyAEACAAJ")}
+                                  book_id: 2,
+                                  created_at: 1.days.ago)}
 end
+Review.create(word_count: 1000,content: content,rate: 4,user_id: user.id,book_id: 1,created_at: 3.days.ago)
 
 users = User.all
 user = users.first

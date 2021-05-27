@@ -8,10 +8,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     # @book_pages = @user.books.registrations.sum(:page_count)
     # @book_words = Review.where(user_id: current_user.id).sum(:word_count)
+    gon.book = []
+    gon.book_pages = []
+    gon.book_words = []
+    
     gon.data = []
     6.times do
       gon.data << rand(100.0)
     end
+
+    
+    
+    
   end
   
   def following
