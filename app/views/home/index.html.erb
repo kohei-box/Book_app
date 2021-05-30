@@ -1,12 +1,34 @@
 <% if user_signed_in? %>
-<div>
-  <section class="user_info"></section>
-  <section class=""></section>
-  <section></section>
-  <div>
-    <h3>Timeline</h3>
-    <%= render 'shared/feed' %>
-  </div>
+<div class="container">
+
+  <section class="sidebar-area">
+    <div class="sidebar">
+      <div class="sidebar__user-info">
+        <div class="sidebar__user-info__image">
+          
+        </div>
+        <div class="sidebar__user-info__name">
+          <p>user@name</p>
+        </div>
+      </div>
+      <div class="sidebar__menu">
+        <li class="sidebar__item"><%= fa_icon("home") %><%= link_to "Home", root_path %></li>
+        <li class="sidebar__item"><%= fa_icon("id-card") %><%= link_to "Profile", root_path %></li>
+        <li class="sidebar__item"><%= fa_icon("book") %><%= link_to "Shelf", root_path %></li>
+        <li class="sidebar__item"><%= fa_icon("search") %><%= link_to "Search", root_path %></li>
+      </div>
+      <div class="sidebar__item sidebar__menu--fixed">
+        
+      </div>
+    </div>
+  </section>
+  <section class="timeline-main">
+    <div>
+      <h3>Timeline</h3>
+      <%= render 'shared/feed' %>
+    </div>
+  </section>
+  
 </div>
 
 <% else %>

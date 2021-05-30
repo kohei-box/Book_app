@@ -12,7 +12,11 @@
  *
  *= require_self
  */
+ @import "font-awesome";
  @import "bootstrap";
  @import "./books.scss";
  @import "./login.scss";
  @import "./signup.scss";
+ @import "./sidebar.scss";
+ @import "./timeline.scss";
+ @import "./layout.scss";
