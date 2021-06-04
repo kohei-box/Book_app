@@ -19,6 +19,9 @@ class User < ApplicationRecord
   validates :email, presence: true,
                     format:{with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+                    
+  # CarrierWaveのuploaderでusersテーブルのimageカラムに画像のURLを指するように設定（詳しくuploadersファイル参照）
+  mount_uploader :image, PictureUploader
   
   
   def self.from_omniauth(auth)
