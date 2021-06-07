@@ -15,10 +15,10 @@
         width: 100%;
         
         &__user-info{
-            height: 230px;
+            // height: 250px;
             border-bottom: 2px solid #cccccc;
             margin: 0 10px;
-            padding: 30px 0;
+            padding: 30px 0 20px 0;
             color: #cccccc;
             
             &__image{
@@ -37,7 +37,8 @@
             }
             &__name {
                 margin-top: 30px;
-                text-align: center;
+                margin-left: 10px;
+                text-align: left;
                 font-size: 18px;
                 
             }
