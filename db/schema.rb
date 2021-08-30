@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_30_121740) do
+ActiveRecord::Schema.define(version: 2021_08_30_092627) do
 
   create_table "book_registrations", force: :cascade do |t|
     t.string "category"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_05_30_121740) do
     t.integer "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "googlebooksapi_id"
     t.index ["book_id"], name: "index_book_registrations_on_book_id"
     t.index ["user_id"], name: "index_book_registrations_on_user_id"
   end
