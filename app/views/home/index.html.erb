@@ -2,6 +2,7 @@
 <div class="container">
 
   <section class="sidebar-area">
+    
     <div class="sidebar">
       <div class="sidebar__user-info">
         <div class="sidebar__user-info__image">
@@ -15,6 +16,7 @@
           <%= render 'shared/stats' %>
         </section>
       </div>
+      
       <div class="sidebar__menu">
         <li class="sidebar__item"><%= fa_icon("home") %><%= link_to "Home", root_path %></li>
         <li class="sidebar__item"><%= fa_icon("id-card") %><%= link_to "Profile", root_path %></li>
@@ -26,10 +28,16 @@
       </div>
     </div>
   </section>
-  <section class="timeline-main">
-    <div>
-      <h3>Timeline</h3>
-      <%= render 'shared/feed' %>
+  
+  <section class="timeline-area">
+    <div class="timeline">
+      <div class="timeline__title">
+        <h3>Timeline</h3>
+      </div>
+      
+      <div class="timeline__reviews">
+        <%= render 'shared/feed' %>
+      </div>
     </div>
   </section>
   

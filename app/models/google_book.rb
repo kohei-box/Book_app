@@ -53,6 +53,7 @@ class GoogleBook
                author: @author,
                image: @image,
                page_count: @page_count)
+      
   end
     
   private

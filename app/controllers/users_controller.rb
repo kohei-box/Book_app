@@ -58,7 +58,7 @@ class UsersController < ApplicationController
       @title = cate
       @user = User.find(params[:id])
       @read_books_list = @user.book_registrations.where(category: cate)
-      @read_books = @read_books_list.map { |read_book| Book.find(read_book.book_id) }
+      @read_books = @read_books_list.map { |read_book| GoogleBook.create_book(read_book.googlebooksapi_id) }
       render 'show_myshelf'
     end
 end

@@ -15,6 +15,7 @@ class BooksController < ApplicationController
   
   def create
     google_book = GoogleBook.create_book(book_params[:googlebooksapi_id])
+    #googleから書籍情報を取得しインスタント化
     @book =  google_book.existing_or_new
     if @book.persisted? || @book.save
       @book_registration = BookRegistration.find_or_initialize_by(user_id: current_user.id, book_id: @book.id )
