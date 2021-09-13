@@ -9,13 +9,13 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :reviews, only: [:create, :destroy]
+  resources :reviews, only: [:new, :create, :destroy]
   resources :books, only: [:index, :show, :create, :destroy] do
     collection do
       get :search
     end
   end
   resources :relationships, only:[:create, :destroy]
-  resources :book_registration, only:[:destroy]
+  resources :book_registrations, only:[:index, :create, :destroy]
 
 end

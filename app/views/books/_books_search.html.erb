@@ -17,7 +17,7 @@
             <button id="modal-open-button2-<%= index %>">読んだ本</button>
           </li>
           <li>
-            <%= link_to '読んでいる本', books_path( book: { googlebooksapi_id: book.googlebooksapi_id, category: "読んでいる本"}),
+            <%= link_to '読んでいる本', book_registrations_path( book: { googlebooksapi_id: book.googlebooksapi_id, category: "読んでいる本"}),
                 method: :post %>
                 <!--class: "#{"text-warning" if book.existing_or_new(current_user).category == 2 }-->
           </li>
